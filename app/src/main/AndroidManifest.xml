@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sample.arc.myapplication">
 
+    <!-- To access Google+ APIs: -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +19,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LifecycleActivity"
+            android:label="Lifecycle Sample" />
+        <activity
+            android:name=".LiveDataActivity"
+            android:label="Live Data"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".LiveDataLeakActivity" />
+        <activity android:name=".TransformationLiveDataActivity" />
+        <activity android:name=".ViewModelActivity"></activity>
     </application>
 
 </manifest>

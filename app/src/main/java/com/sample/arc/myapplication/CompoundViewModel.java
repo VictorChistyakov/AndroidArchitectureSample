@@ -9,11 +9,19 @@ import android.arch.lifecycle.ViewModel;
 
 public class CompoundViewModel extends ViewModel{
     LiveData<Compound> compoundMutableLiveData;
+    MutableLiveData<Integer> livedata = new MutableLiveData<>();
+
+    public CompoundViewModel() {
+        livedata.setValue(0);
+    }
+
+    public void incrementValue(){
+        livedata.setValue(livedata.getValue()+1);
+    }
 
     public LiveData<Compound> getCompoundMutableLiveData(){
         if(compoundMutableLiveData == null){
-            IncrementalLiveData.get().incrementValue();
-            compoundMutableLiveData = Transformations.switchMap(IncrementalLiveData.get(), new Function<Integer, LiveData<Compound>>() {
+            compoundMutableLiveData = Transformations.switchMap(livedata, new Function<Integer, LiveData<Compound>>() {
                 @Override
                 public LiveData<Compound> apply(Integer input) {
                     return retrieveData(input);
